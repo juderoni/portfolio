@@ -8,6 +8,9 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY index.html /usr/share/nginx/html/index.html
 COPY resume.pdf /usr/share/nginx/html/resume.pdf
 
+COPY index.css /usr/share/nginx/html/index.css
+COPY index.js /usr/share/nginx/html/index.js
+
 # Expose port 8080 for Cloud Run
 EXPOSE 8080
 

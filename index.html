@@ -3,34 +3,97 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>My Resume</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                height: 100vh;
-                background-color: #f4f4f9;
-            }
-            h1 {
-                color: #333;
-            }
-            p {
-                color: #666;
-            }
-            a {
-                text-decoration: none;
-                color: #0066cc;
-            }
-        </style>
+        <title>Jude Sproul - Resume</title>
+        <link rel="stylesheet" href="index.css" />
     </head>
     <body>
-        <h1>Welcome to My Portfolio</h1>
-        <p>Hello! I'm Jude Sproul, a Software Engineer.</p>
-        <p><a href="resume.pdf" target="_blank">View My Resume</a></p>
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <span class="icon">🌙</span>
+        </button>
+        <div class="container">
+            <h1>Jude Sproul</h1>
+            <p>
+                <strong>Address:</strong> Collegeview Avenue 1505-201, Raleigh
+                27606, United States
+            </p>
+            <p><strong>Phone:</strong> (252)-305-7378</p>
+            <p>
+                <strong>Email:</strong>
+                <a href="mailto:jnsproul@ncsu.edu">jnsproul@ncsu.edu</a>
+            </p>
+            <p>
+                <strong>LinkedIn:</strong>
+                <a
+                    href="https://www.linkedin.com/in/jude-n-sproul/"
+                    target="_blank"
+                    >View Profile</a
+                >
+            </p>
+
+            <h2>Education</h2>
+            <p>
+                <strong>North Carolina State University</strong> - Master's in
+                Computer Science (ABM Program, May 2025)
+            </p>
+            <p>
+                <strong>North Carolina State University</strong> - Bachelor's in
+                Computer Science (GPA: 3.949, 2021-2024)
+            </p>
+
+            <h2>Skills</h2>
+            <p>
+                <strong>Programming Languages:</strong> Java, Python, C, C++,
+                Julia, JavaScript
+            </p>
+            <p>
+                <strong>Web Development:</strong> HTML, CSS, React, Bootstrap,
+                Node.js
+            </p>
+            <p>
+                <strong>Databases:</strong> MySQL, database design and
+                optimization
+            </p>
+            <p><strong>Cloud:</strong> Google Cloud Platform, Nginx</p>
+
+            <h2>Work Experience</h2>
+            <p>
+                <strong
+                    >Data Management Intern - Renaissance Computing
+                    Institute</strong
+                >
+                (05/2023 – Present)
+            </p>
+            <p>
+                Developed a Python package for Docker image automation and
+                deployment security on Google Cloud.
+            </p>
+
+            <p>
+                <strong>Research Intern - Coastal Studies Institute</strong>
+                (05/2022 – 08/2022)
+            </p>
+            <p>
+                Created a Julia program to analyze Gulf Stream characteristics
+                using HF Radars.
+            </p>
+
+            <p>
+                <strong>Frontend Developer - Sunshine</strong> (01/2024 –
+                05/2024)
+            </p>
+            <p>
+                Developed a mental health web app in collaboration with NC
+                State’s CSC Department and Counseling Center.
+            </p>
+
+            <h2>Projects</h2>
+            <p><strong>Zybook Clone</strong> (05/2023 – 07/2023)</p>
+            <p>
+                Developed a reduced functionality clone of Zybooks using Python
+                and MySQL with a BCNF-compliant database.
+            </p>
+        </div>
+
+        <script src="index.js"></script>
     </body>
 </html>

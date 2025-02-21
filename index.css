@@ -1,0 +1,66 @@
+body {
+    font-family: "Courier New", monospace;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f9;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+}
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+.typewriter {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid #007bff;
+    width: 0;
+    animation: typing 3s steps(40, end) forwards;
+}
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+h1,
+h2 {
+    color: #007bff;
+}
+.theme-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+.dark-mode h1,
+.dark-mode h2 {
+    color: #4da6ff;
+}
+.dark-mode .theme-toggle {
+    background: #4da6ff;
+    color: #121212;
+}
+.dark-mode a {
+    color: #4da6ff;
+}
+.dark-mode a:visited {
+    color: #a3c9ff;
+}
