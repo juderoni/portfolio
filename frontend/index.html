@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Jude Sproul - Resume</title>
+        <link rel="stylesheet" href="static/styles.css" />
+    </head>
+    <body class="resume-page">
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="nav-left">
+                <a href="index.html" class="brand">JS Resume</a>
+            </div>
+            <div class="nav-right">
+                <div class="dropdown">
+                    <button
+                        class="dropdown-toggle"
+                        id="settingsToggle"
+                        onclick="toggleDropdown(event)"
+                    >
+                        Settings
+                    </button>
+                    <div class="dropdown-menu" id="settingsMenu">
+                        <div class="current-theme">
+                            Current: <span id="currentThemeDisplay"></span>
+                        </div>
+                        <button
+                            class="theme-option"
+                            onclick="setTheme('light')"
+                        >
+                            Light
+                        </button>
+                        <button class="theme-option" onclick="setTheme('dark')">
+                            Dark
+                        </button>
+                        <button
+                            class="theme-option"
+                            onclick="setTheme('system')"
+                        >
+                            System
+                        </button>
+                    </div>
+                </div>
+                <button class="login-btn" onclick="location.href='login.html'">
+                    Login
+                </button>
+            </div>
+        </nav>
+
+        <!-- Resume Container (will be populated dynamically) -->
+        <div class="container">
+            <p>Loading resume...</p>
+        </div>
+
+        <script src="static/scripts.js"></script>
+    </body>
+</html>

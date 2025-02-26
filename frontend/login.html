@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login - JS Resume</title>
+        <link rel="stylesheet" href="static/styles.css" />
+    </head>
+    <body>
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="nav-left">
+                <!-- Brand as a link to home -->
+                <a href="index.html" class="brand">JS Resume</a>
+            </div>
+            <div class="nav-right">
+                <!-- Settings Dropdown -->
+                <div class="dropdown">
+                    <button
+                        class="dropdown-toggle"
+                        id="settingsToggle"
+                        onclick="toggleDropdown(event)"
+                    >
+                        Settings
+                    </button>
+                    <div class="dropdown-menu" id="settingsMenu">
+                        <div class="current-theme">
+                            Current: <span id="currentThemeDisplay"></span>
+                        </div>
+                        <button
+                            class="theme-option"
+                            onclick="setTheme('light')"
+                        >
+                            Light
+                        </button>
+                        <button class="theme-option" onclick="setTheme('dark')">
+                            Dark
+                        </button>
+                        <button
+                            class="theme-option"
+                            onclick="setTheme('system')"
+                        >
+                            System
+                        </button>
+                    </div>
+                </div>
+                <!-- Login Button -->
+                <button class="login-btn" onclick="location.href='login.html'">
+                    Login
+                </button>
+            </div>
+        </nav>
+
+        <!-- MAIN CONTENT -->
+        <div class="container">
+            <h1>Admin Login</h1>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        required
+                        placeholder="Enter your admin username"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        required
+                        placeholder="Enter your password"
+                    />
+                </div>
+                <button type="submit" class="login-submit">Sign In</button>
+            </form>
+
+            <p id="loginMessage"></p>
+            <!-- ✅ Display login feedback -->
+        </div>
+
+        <script src="static/scripts.js"></script>
+    </body>
+</html>
