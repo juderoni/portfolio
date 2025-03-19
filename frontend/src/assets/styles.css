@@ -1,0 +1,142 @@
+/* ✅ Light Theme Variables */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #005cc1;
+    --text-color: #333;
+    --bg-color: #f8f5e1;
+    --border-color: #ccc;
+    --btn-bg: #005cc1;
+    --btn-text: white;
+    --btn-hover-bg: #004da3;
+    --btn-hover-text: white;
+}
+
+/* ✅ Dark Theme Variables */
+.dark-mode {
+    --primary-color: #1e1e1e;
+    --secondary-color: #444;
+    --text-color: #c2b280;
+    --bg-color: #121212;
+    --border-color: #666;
+    --btn-bg: #555;
+    --btn-text: #c2b280;
+    --btn-hover-bg: #666;
+    --btn-hover-text: white;
+}
+
+/* ✅ Global Styles */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: all 0.3s ease-in-out;
+    font-family: "Courier New", monospace;
+}
+
+/* ✅ Ensure all views update properly */
+#app {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* ✅ Navbar */
+.navbar {
+    background-color: var(--primary-color) !important;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.navbar-brand,
+.navbar-nav .nav-link {
+    color: var(--btn-text) !important;
+}
+
+/* ✅ DARK MODE Fix for Sign-In Button */
+.dark-mode .btn-custom {
+    background: var(--btn-bg);
+    color: var(--btn-hover-text) !important; /* Ensure text is visible */
+}
+
+.dark-mode .btn-custom:hover {
+    background: var(--btn-hover-bg) !important;
+    color: var(--btn-hover-text) !important;
+}
+
+/* ✅ Fix input placeholder text color */
+::placeholder {
+    color: var(--text-color);
+    opacity: 0.7; /* Makes it more visible */
+}
+
+/* ✅ DARK MODE Fix for Placeholders */
+.dark-mode ::placeholder {
+    color: #c2b280 !important;
+    opacity: 0.7;
+}
+
+/* ✅ Dropdown Fix */
+.b-dropdown {
+    border: none !important; /* ✅ Fixes double border issue */
+}
+
+.b-dropdown-menu {
+    background-color: var(--primary-color) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+/* ✅ Fix text color in dark mode */
+.b-dropdown-item {
+    color: var(--btn-text) !important;
+}
+
+.b-dropdown-item:hover {
+    background: var(--btn-hover-bg) !important;
+}
+
+/* ✅ Fix form elements */
+.form-group label,
+.form-control {
+    color: var(--text-color);
+}
+
+/* ✅ Fix Login Window Size */
+.login-form {
+    max-width: 350px !important; /* Reduce width */
+    margin: 40px auto; /* Centering */
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ Fixing Dark Mode Inputs */
+.dark-mode .form-control {
+    background: #2a2a2a;
+    color: var(--text-color);
+}
+
+/* Force remove Bootstrap's default button styles */
+#theme-dropdown > button {
+    background: var(--btn-bg) !important;
+    color: var(--btn-text) !important;
+    border: none !important;
+    padding: 10px 16px !important;
+    font-size: 16px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 40px;
+    border-radius: 0 !important; /* Remove unwanted border radius */
+}
+
+/* Dark Mode */
+.dark-mode #theme-dropdown > button {
+    background: var(--btn-dark-bg) !important;
+    color: var(--btn-dark-text) !important;
+}
+
+/* Fix the dropdown width */
+#theme-dropdown .dropdown-menu {
+    width: 120px !important; /* Match the button width */
+}
