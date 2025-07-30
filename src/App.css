@@ -1,0 +1,207 @@
+/* App Layout Styles */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background);
+}
+
+/* App Loading State */
+.app-loading {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background);
+  gap: var(--spacing-6);
+}
+
+.loading-text {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  font-weight: var(--font-medium);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.main-content {
+  flex: 1;
+  padding-top: 0;
+  /* Navigation already adds body padding-top */
+  position: relative;
+  overflow-x: hidden;
+  transition: opacity var(--transition-base);
+}
+
+.main-content.page-transitioning {
+  opacity: 0.7;
+}
+
+/* Page Container Styles */
+.page-container {
+  min-height: calc(100vh - var(--spacing-16));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-8) var(--spacing-4);
+  position: relative;
+  transition: all var(--transition-base);
+}
+
+.content-wrapper {
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.content-wrapper h1 {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-4);
+  line-height: var(--leading-tight);
+}
+
+.content-wrapper p {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: 600px;
+  margin: 0 auto var(--spacing-6);
+}
+
+/* Smooth page transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+/* Loading states */
+.loading-skeleton {
+  background: linear-gradient(90deg, var(--surface) 25%, var(--surface-hover) 50%, var(--surface) 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .page-container {
+    padding: var(--spacing-6) var(--spacing-4);
+  }
+  
+  .content-wrapper {
+    max-width: 900px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: var(--spacing-6) var(--spacing-4);
+    min-height: calc(100vh - var(--spacing-16));
+  }
+
+  .content-wrapper h1 {
+    font-size: var(--text-3xl);
+  }
+
+  .content-wrapper p {
+    font-size: var(--text-base);
+  }
+}
+
+@media (max-width: 640px) {
+  .page-container {
+    padding: var(--spacing-4) var(--spacing-3);
+  }
+
+  .content-wrapper h1 {
+    font-size: var(--text-2xl);
+  }
+  
+  .content-wrapper p {
+    font-size: var(--text-sm);
+  }
+}
+
+/* Focus management for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: var(--spacing-6);
+  background: var(--primary);
+  color: white;
+  padding: var(--spacing-2) var(--spacing-4);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  z-index: var(--z-tooltip);
+  transition: top var(--transition-base);
+}
+
+.skip-link:focus {
+  top: var(--spacing-4);
+}/* Pag
+e lazy loading styles */
+.page-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  padding: var(--spacing-8);
+  gap: var(--spacing-4);
+}
+
+.page-loading p {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  font-weight: var(--font-medium);
+  animation: pulse 2s infinite;
+}

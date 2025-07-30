@@ -1,0 +1,126 @@
+/* Globe Component Styles */
+
+.globe-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 600px;
+  margin: 0 auto;
+  background: radial-gradient(circle at center, #0a0a0a 0%, #000000 100%);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.globe-mount {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+
+.globe-mount:active {
+  cursor: grabbing;
+}
+
+.globe-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-4);
+  color: white;
+  z-index: 10;
+}
+
+.globe-loading .loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.globe-loading p {
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+}
+
+.globe-instructions {
+  position: absolute;
+  bottom: var(--spacing-4);
+  left: var(--spacing-4);
+  right: var(--spacing-4);
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--text-sm);
+  text-align: center;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.globe-instructions p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.globe-instructions p:first-child {
+  margin-bottom: var(--spacing-1);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .globe-container {
+    height: 400px;
+  }
+
+  .globe-instructions {
+    font-size: var(--text-xs);
+    padding: var(--spacing-2);
+  }
+}
+
+@media (max-width: 640px) {
+  .globe-container {
+    height: 350px;
+    border-radius: var(--radius-lg);
+  }
+
+  .globe-instructions {
+    bottom: var(--spacing-2);
+    left: var(--spacing-2);
+    right: var(--spacing-2);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .globe-loading .loading-spinner {
+    animation: none;
+    border: 3px solid white;
+  }
+}

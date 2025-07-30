@@ -1,0 +1,335 @@
+/* Activities Page Styles */
+.activities-page {
+  min-height: calc(100vh - var(--spacing-16));
+  padding: var(--spacing-8) var(--spacing-4);
+  background-color: var(--background);
+}
+
+/* Animation on scroll styles */
+.animate-on-scroll {
+  /* Remove initial opacity: 0 to prevent flash */
+  transition: all 0.8s ease-out;
+}
+
+.animate-on-scroll:not(.animate-in) {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.animate-on-scroll.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Individual element animations - only apply when parent is ready */
+.animate-on-scroll.animate-in .animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-on-scroll.animate-in .activity-card {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.activities-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Header Section */
+.activities-header {
+  text-align: center;
+  margin-bottom: var(--spacing-12);
+}
+
+.activities-header h1 {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-4);
+  position: relative;
+}
+
+.activities-header h1::after {
+  content: '';
+  position: absolute;
+  bottom: calc(-1 * var(--spacing-3));
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: var(--primary);
+  border-radius: var(--radius-sm);
+}
+
+.activities-header p {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Activities Grid */
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+/* Activity Card */
+.activity-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-6);
+  transition: all var(--transition-slow);
+  box-shadow: var(--shadow-sm);
+  height: fit-content;
+}
+
+.activity-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary);
+}
+
+/* Activity Header */
+.activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-md);
+  gap: var(--spacing-md);
+}
+
+.activity-title-section {
+  flex: 1;
+}
+
+.activity-title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-1) 0;
+  line-height: var(--leading-snug);
+}
+
+.activity-organization {
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  color: var(--primary);
+  margin: 0;
+  line-height: var(--leading-tight);
+}
+
+.activity-period {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  background-color: var(--background);
+  padding: var(--spacing-1-5) var(--spacing-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+  font-weight: var(--font-medium);
+}
+
+/* Activity Description */
+.activity-description {
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--spacing-6);
+  font-size: var(--text-base);
+}
+
+/* Activity Achievements */
+.activity-achievements {
+  border-top: 1px solid var(--border);
+  padding-top: var(--spacing-4);
+}
+
+.achievements-title {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-3) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.achievements-title::before {
+  content: '🏆';
+  font-size: var(--text-sm);
+}
+
+.achievements-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.achievement-item {
+  position: relative;
+  padding-left: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  transition: color 0.2s ease;
+}
+
+.achievement-item::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: bold;
+  font-size: var(--text-base);
+}
+
+.achievement-item:hover {
+  color: var(--primary);
+}
+
+.achievement-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Special styling for different activity types */
+.activity-card[data-activity-type='leadership'] {
+  border-left: 4px solid var(--primary);
+}
+
+.activity-card[data-activity-type='competitive'] {
+  border-left: 4px solid #10b981;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .activities-page {
+    padding: var(--spacing-6) var(--spacing-4);
+  }
+
+  .activities-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-8);
+  }
+}
+
+@media (max-width: 768px) {
+  .activities-page {
+    padding: var(--spacing-6) var(--spacing-4);
+  }
+
+  .activities-header {
+    margin-bottom: var(--spacing-8);
+  }
+
+  .activities-header h1 {
+    font-size: var(--text-3xl);
+  }
+
+  .activities-header p {
+    font-size: var(--text-base);
+  }
+
+  .activities-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+  }
+
+  .activity-card {
+    padding: var(--spacing-5);
+  }
+
+  .activity-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-2);
+  }
+
+  .activity-period {
+    align-self: flex-start;
+  }
+
+  .activity-title {
+    font-size: var(--text-lg);
+  }
+}
+
+@media (max-width: 640px) {
+  .activities-page {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .activities-header h1 {
+    font-size: var(--text-xl);
+  }
+
+  .activities-grid {
+    gap: var(--spacing-md);
+  }
+
+  .activity-card {
+    padding: var(--spacing-sm);
+  }
+
+  .activity-title {
+    font-size: var(--text-base);
+  }
+
+  .activity-organization {
+    font-size: var(--text-sm);
+  }
+
+  .activity-description {
+    font-size: var(--text-sm);
+  }
+
+  .achievement-item {
+    font-size: var(--text-xs);
+    padding-left: var(--spacing-sm);
+  }
+
+  .achievement-item::before {
+    font-size: var(--text-sm);
+  }
+}
+
+/* Large screens optimization */
+@media (min-width: 1200px) {
+  .activities-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-2xl);
+  }
+
+  .activity-card {
+    padding: var(--spacing-xl);
+  }
+}
+
+/* Animation for cards appearing */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.activity-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.activity-card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.activity-card:nth-child(3) {
+  animation-delay: 0.2s;
+}
