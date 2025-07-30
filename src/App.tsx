@@ -1,9 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { Navigation, LoadingSpinner, ScrollToTop } from './components';
-import { About, Projects, Travel } from './pages';
+import { Navigation, LoadingSpinner, ScrollToTop, ErrorBoundary } from './components';
 import { useScrollToTop } from './hooks/useScrollToTop';
 import './App.css';
+
+// Lazy load page components for code splitting
+const About = lazy(() => import('./pages/About'));
+const Projects = lazy(() => import('./pages/Projects'));
+const Travel = lazy(() => import('./pages/Travel'));
 
 function AppContent() {
   const [isLoading, setIsLoading] = useState(true);
@@ -42,15 +46,26 @@ function AppContent() {
 
   return (
     <div className="app">
-      <Navigation />
-      <main className={`main-content ${pageTransition ? 'page-transitioning' : ''}`}>
-        <Routes>
-          <Route path="/" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/travel" element={<Travel />} />
-        </Routes>
-      </main>
-      <ScrollToTop />
+      <ErrorBoundary>
+        <Navigation />
+        <main className={`main-content ${pageTransition ? 'page-transitioning' : ''}`}>
+          <ErrorBoundary>
+            <Suspense fallback={
+              <div className="page-loading">
+                <LoadingSpinner size="medium" />
+                <p>Loading page...</p>
+              </div>
+            }>
+              <Routes>
+                <Route path="/" element={<About />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/travel" element={<Travel />} />
+              </Routes>
+            </Suspense>
+          </ErrorBoundary>
+        </main>
+        <ScrollToTop />
+      </ErrorBoundary>
     </div>
   );
 }

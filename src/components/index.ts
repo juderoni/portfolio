@@ -4,3 +4,4 @@ export { default as LoadingSpinner } from './LoadingSpinner';
 export { default as ScrollToTop } from './ScrollToTop';
 export { default as Globe } from './Globe';
 export { default as LocationModal } from './LocationModal';
+export { default as ErrorBoundary } from './ErrorBoundary';
