@@ -16,7 +16,7 @@ export const projects: Project[] = [
     ],
     period: '2023-2024',
     links: {
-      repo: 'https://github.com/judesproul/betcha-ios',
+      repo: 'https://github.com/bettrapp/bettr-ios-frontend',
     },
   },
   {
@@ -33,16 +33,12 @@ export const projects: Project[] = [
       'CSS3',
     ],
     period: '2023',
-    links: {
-      demo: 'https://zybooks-clone-demo.com',
-      repo: 'https://github.com/judesproul/zybooks-clone',
-    },
+    
   },
   {
     id: 'sunshine-web',
     title: 'Sunshine Web Application',
-    description:
-      'A weather and outdoor activity planning web application that provides personalized recommendations based on weather conditions, user preferences, and location data. Features responsive design and real-time weather updates.',
+    description: 'Mental health wellness application that was going to made for use by NC State. Made in Senior Design and partnered with the Wellness Center at NC State to make an MVP.',
     technologies: [
       'React',
       'TypeScript',
@@ -52,9 +48,6 @@ export const projects: Project[] = [
       'Vite',
     ],
     period: '2022-2023',
-    links: {
-      demo: 'https://sunshine-app.com',
-      repo: 'https://github.com/judesproul/sunshine-web',
-    },
+    
   },
 ];
