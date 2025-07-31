@@ -17,10 +17,10 @@ const InteractiveGlobe = ({ locations, onLocationSelect, selectedLocation }: Glo
     return locations.map(location => ({
       lat: location.coordinates.lat,
       lng: location.coordinates.lng,
-      size: selectedLocation?.id === location.id ? 0.8 : 0.4,
-      color: selectedLocation?.id === location.id ? '#10b981' : '#ff6b35',
+      size: selectedLocation?.id === location.id ? 1.2 : 0.8, // Larger markers, bigger selected
+      color: selectedLocation?.id === location.id ? '#10b981' : '#ff6b35', // Green for selected, orange for others
       location: location,
-      label: `${location.name}, ${location.country}`
+      label: `${location.name}, ${location.country} - Click to explore!`
     }));
   }, [locations, selectedLocation]);
 
@@ -35,7 +35,7 @@ const InteractiveGlobe = ({ locations, onLocationSelect, selectedLocation }: Glo
     if (globeEl.current) {
       // Set initial camera position
       globeEl.current.pointOfView({ altitude: 2.5 });
-      
+
       // Optional: Auto-rotate slowly (can be removed if not wanted)
       // globeEl.current.controls().autoRotate = true;
       // globeEl.current.controls().autoRotateSpeed = 0.5;
@@ -49,34 +49,35 @@ const InteractiveGlobe = ({ locations, onLocationSelect, selectedLocation }: Glo
         globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
         bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
         backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
-        
+
         // Points configuration
         pointsData={pointsData}
         pointAltitude="size"
         pointColor="color"
-        pointRadius={0.6}
+        pointRadius={1.0} // Larger base radius for easier clicking
         pointResolution={20}
         pointsMerge={false}
-        
+
         // Point interactions
         onPointClick={handlePointClick}
         pointLabel="label"
-        
+
         // Globe appearance
         atmosphereColor="#4f94cd"
         atmosphereAltitude={0.15}
-        
+
         // Controls
         enablePointerInteraction={true}
-        
+
         // Responsive sizing - fill the container
         width={800}
         height={600}
       />
-      
+
       <div className="globe-instructions">
         <p>🌍 Click on orange markers to explore travel destinations</p>
         <p>🖱️ Drag to rotate the globe - hover over markers to highlight</p>
+        <p>✨ Green markers show your last selected location</p>
       </div>
     </div>
   );

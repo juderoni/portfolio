@@ -7,6 +7,7 @@ import './Travel.css';
 const Travel = () => {
   const [selectedLocation, setSelectedLocation] = useState<TravelLocation | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [openDirectlyToGallery, setOpenDirectlyToGallery] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
   const globeRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
@@ -37,11 +38,20 @@ const Travel = () => {
   const handleLocationSelect = (location: TravelLocation) => {
     console.log('Location selected in Travel component:', location.name); // Debug log
     setSelectedLocation(location);
+    setOpenDirectlyToGallery(false);
+    setIsModalOpen(true);
+  };
+
+  const handlePhotoSelect = (location: TravelLocation) => {
+    console.log('Photo gallery selected for:', location.name); // Debug log
+    setSelectedLocation(location);
+    setOpenDirectlyToGallery(true);
     setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    setOpenDirectlyToGallery(false);
     // Keep selectedLocation for globe highlighting
   };
 
@@ -93,19 +103,40 @@ const Travel = () => {
             />
           </div>
 
-          {/* Fallback location buttons for testing */}
+          {/* Quick Access Location Cards */}
           <div className="location-buttons animate-fade-in-up animate-stagger-2">
-            <p className="fallback-text">Can't see the markers? Try clicking these locations:</p>
+            <p className="fallback-text">Quick access to all destinations:</p>
             <div className="button-grid">
-              {travelLocations.map((location) => (
-                <button
-                  key={location.id}
-                  className="location-button"
-                  onClick={() => handleLocationSelect(location)}
-                >
-                  {location.name}, {location.country}
-                </button>
-              ))}
+              {travelLocations.map((location) => {
+                const totalPhotos = location.visits.reduce((sum, visit) => sum + visit.photos.length, 0);
+                return (
+                  <div key={location.id} className="location-card">
+                    <div className="location-info">
+                      <h4>{location.name}</h4>
+                      <span className="location-country">{location.country}</span>
+                      <div className="location-stats">
+                        <span className="photo-count">📸 {totalPhotos} photos</span>
+                        <span className="visit-count">✈️ {location.visits.length} visits</span>
+                      </div>
+                    </div>
+                    <div className="location-actions">
+                      <button
+                        className="location-button primary"
+                        onClick={() => handleLocationSelect(location)}
+                      >
+                        View Details
+                      </button>
+                      <button
+                        className="location-button secondary"
+                        onClick={() => handlePhotoSelect(location)}
+                        title="Quick photo view"
+                      >
+                        📸 Photos
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -165,6 +196,7 @@ const Travel = () => {
         location={selectedLocation}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
+        openDirectlyToGallery={openDirectlyToGallery}
       />
     </div>
   );

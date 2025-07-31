@@ -412,6 +412,37 @@ Photo overlay for clickable images */
   flex-shrink: 0;
 }
 
+.gallery-nav-options {
+  display: flex;
+  gap: var(--spacing-3);
+  align-items: center;
+}
+
+.gallery-back-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+}
+
+.gallery-back-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.gallery-back-button span {
+  font-size: var(--text-sm);
+}
+
 .gallery-info-sidebar {
   position: absolute;
   left: var(--spacing-6);
@@ -448,6 +479,46 @@ Photo overlay for clickable images */
   display: inline-block;
 }
 
+.trip-navigation {
+  margin-top: var(--spacing-4);
+  padding-top: var(--spacing-3);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.trip-nav-label {
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 var(--spacing-2) 0;
+  text-align: center;
+}
+
+.trip-nav-buttons {
+  display: flex;
+  gap: var(--spacing-2);
+  justify-content: center;
+}
+
+.trip-nav-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+  padding: var(--spacing-2);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  min-height: 32px;
+}
+
+.trip-nav-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+}
+
 .gallery-close-button {
   background: rgba(255, 255, 255, 0.1);
   border: none;
@@ -472,6 +543,8 @@ Photo overlay for clickable images */
   justify-content: center;
   position: relative;
   min-height: 0;
+  /* Reserve space for thumbnails at the bottom */
+  margin-bottom: 100px;
 }
 
 .gallery-image-container {
@@ -479,15 +552,21 @@ Photo overlay for clickable images */
   display: flex;
   align-items: center;
   justify-content: center;
-  max-height: 100%;
+  /* Limit height to prevent overlap with thumbnails */
+  max-height: calc(100vh - 200px);
+  /* min-height:  calc(100vh - 200px); */
   /* Add more padding to ensure photo doesn't overlap with sidebar and nav buttons */
-  padding: 0 calc(var(--spacing-16) + 60px) 0 calc(var(--spacing-16) + 220px);
+  padding: 0 calc(var(--spacing-8) + 0px) 0 calc(var(--spacing-8) + 220px);
+  margin: 1em 6em 0px 0px;
+
 }
 
 .gallery-image {
   max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  max-height: calc(100vh - 200px);
+  height: auto;
+  /* Maintains the image's aspect ratio */
+  /* object-fit: contain; */
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-xl);
 }
