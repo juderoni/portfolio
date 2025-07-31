@@ -1,6 +1,6 @@
 import { useState, useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { Navigation, LoadingSpinner, ScrollToTop, ErrorBoundary } from './components';
+import { Navigation, LoadingSpinner, ScrollToTop, ErrorBoundary, Footer } from './components';
 import { useScrollToTop } from './hooks/useScrollToTop';
 import './App.css';
 
@@ -64,6 +64,7 @@ function AppContent() {
             </Suspense>
           </ErrorBoundary>
         </main>
+        <Footer />
         <ScrollToTop />
       </ErrorBoundary>
     </div>
