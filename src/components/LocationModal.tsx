@@ -6,13 +6,15 @@ interface LocationModalProps {
   location: TravelLocation | null;
   isOpen: boolean;
   onClose: () => void;
+  openDirectlyToGallery?: boolean;
 }
 
-const LocationModal = ({ location, isOpen, onClose }: LocationModalProps) => {
+const LocationModal = ({ location, isOpen, onClose, openDirectlyToGallery }: LocationModalProps) => {
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [currentVisitPhotos, setCurrentVisitPhotos] = useState<string[]>([]);
-  const [currentVisitInfo, setCurrentVisitInfo] = useState<{ visitDate: string; locationName: string } | null>(null);
+  const [currentVisitInfo, setCurrentVisitInfo] = useState<{ visitDate: string; locationName: string; visitId: string } | null>(null);
+  const [currentVisitIndex, setCurrentVisitIndex] = useState(0);
 
   // Handle escape key
   useEffect(() => {
@@ -55,11 +57,71 @@ const LocationModal = ({ location, isOpen, onClose }: LocationModalProps) => {
     return () => document.removeEventListener('keydown', handleGalleryKeys);
   }, [galleryOpen, currentPhotoIndex, currentVisitPhotos.length]);
 
-  const openGallery = (photos: string[], photoIndex: number, visitDate: string, locationName: string) => {
+  // Reset gallery state when modal opens or location changes
+  useEffect(() => {
+    if (isOpen) {
+      // Reset gallery state for new location
+      setGalleryOpen(false);
+      setCurrentPhotoIndex(0);
+      setCurrentVisitPhotos([]);
+      setCurrentVisitInfo(null);
+      setCurrentVisitIndex(0);
+    }
+  }, [isOpen, location?.id]); // Reset when modal opens or location changes
+
+  // Open gallery directly when openDirectlyToGallery is true
+  useEffect(() => {
+    if (isOpen && openDirectlyToGallery && location && location.visits.length > 0) {
+      const firstVisit = location.visits[0];
+      if (firstVisit.photos.length > 0) {
+        setCurrentVisitPhotos(firstVisit.photos);
+        setCurrentPhotoIndex(0);
+        setCurrentVisitInfo({ 
+          visitDate: firstVisit.visitDate, 
+          locationName: location.name,
+          visitId: firstVisit.id 
+        });
+        setCurrentVisitIndex(0);
+        setGalleryOpen(true);
+      }
+    }
+  }, [isOpen, openDirectlyToGallery, location]);
+
+  const openGallery = (photos: string[], photoIndex: number, visitDate: string, locationName: string, visitId?: string) => {
     setCurrentVisitPhotos(photos);
     setCurrentPhotoIndex(photoIndex);
-    setCurrentVisitInfo({ visitDate, locationName });
+    setCurrentVisitInfo({ visitDate, locationName, visitId: visitId || '' });
+    
+    // Find the visit index for trip navigation
+    if (location && visitId) {
+      const visitIndex = location.visits.findIndex(visit => visit.id === visitId);
+      setCurrentVisitIndex(visitIndex >= 0 ? visitIndex : 0);
+    }
+    
     setGalleryOpen(true);
+  };
+
+  const navigateTrip = (direction: 'prev' | 'next') => {
+    if (!location || location.visits.length <= 1) return;
+    
+    let newVisitIndex;
+    if (direction === 'prev') {
+      newVisitIndex = currentVisitIndex === 0 ? location.visits.length - 1 : currentVisitIndex - 1;
+    } else {
+      newVisitIndex = currentVisitIndex === location.visits.length - 1 ? 0 : currentVisitIndex + 1;
+    }
+    
+    const newVisit = location.visits[newVisitIndex];
+    if (newVisit.photos.length > 0) {
+      setCurrentVisitIndex(newVisitIndex);
+      setCurrentVisitPhotos(newVisit.photos);
+      setCurrentPhotoIndex(0); // Start at first photo of new trip
+      setCurrentVisitInfo({
+        visitDate: newVisit.visitDate,
+        locationName: location.name,
+        visitId: newVisit.id
+      });
+    }
   };
 
   const navigatePhoto = (direction: 'prev' | 'next') => {
@@ -136,7 +198,7 @@ const LocationModal = ({ location, isOpen, onClose }: LocationModalProps) => {
                           <div
                             key={index}
                             className="photo-item"
-                            onClick={() => openGallery(visit.photos, index, visit.visitDate, location.name)}
+                            onClick={() => openGallery(visit.photos, index, visit.visitDate, location.name, visit.id)}
                           >
                             <img
                               src={photo}
@@ -171,16 +233,41 @@ const LocationModal = ({ location, isOpen, onClose }: LocationModalProps) => {
         <div className="photo-gallery-overlay" onClick={() => setGalleryOpen(false)}>
           <div className="photo-gallery" onClick={(e) => e.stopPropagation()}>
             <div className="gallery-header">
-              <button
-                className="gallery-close-button"
-                onClick={() => setGalleryOpen(false)}
-                aria-label="Close gallery"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </button>
+              <div className="gallery-nav-options">
+                {openDirectlyToGallery ? (
+                  <>
+                    {/* Travel Page Button - Top */}
+                    <button
+                      className="gallery-close-button"
+                      onClick={onClose}
+                      aria-label="Back to travel page"
+                      title="Back to travel page"
+                    >
+                      🏠
+                    </button>
+                    
+                    {/* Location Details Button - Bottom */}
+                    <button
+                      className="gallery-back-button"
+                      onClick={() => setGalleryOpen(false)}
+                      aria-label="Back to location details"
+                      title="View location details"
+                    >
+                      📍
+                    </button>
+                  </>
+                ) : (
+                  /* Standard Close Button */
+                  <button
+                    className="gallery-close-button"
+                    onClick={() => setGalleryOpen(false)}
+                    aria-label="Close gallery"
+                    title="Close gallery"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
             </div>
 
             <div className="gallery-content">
@@ -190,6 +277,35 @@ const LocationModal = ({ location, isOpen, onClose }: LocationModalProps) => {
                 <span className="photo-counter">
                   {currentPhotoIndex + 1} of {currentVisitPhotos.length}
                 </span>
+                
+                {/* Trip Navigation - only show if multiple trips exist */}
+                {location && location.visits.length > 1 && (
+                  <div className="trip-navigation">
+                    <p className="trip-nav-label">Trip {currentVisitIndex + 1} of {location.visits.length}</p>
+                    <div className="trip-nav-buttons">
+                      <button
+                        className="trip-nav-button"
+                        onClick={() => navigateTrip('prev')}
+                        aria-label="Previous trip"
+                        title={`Go to ${location.visits[currentVisitIndex === 0 ? location.visits.length - 1 : currentVisitIndex - 1].visitDate}`}
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <polyline points="15,18 9,12 15,6"></polyline>
+                        </svg>
+                      </button>
+                      <button
+                        className="trip-nav-button"
+                        onClick={() => navigateTrip('next')}
+                        aria-label="Next trip"
+                        title={`Go to ${location.visits[currentVisitIndex === location.visits.length - 1 ? 0 : currentVisitIndex + 1].visitDate}`}
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <polyline points="9,18 15,12 9,6"></polyline>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
               <button
                 className="gallery-nav-button gallery-prev"

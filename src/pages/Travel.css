@@ -301,17 +301,72 @@
 
 .button-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--spacing-3);
-  max-width: 800px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-4);
+  max-width: 1000px;
   margin: 0 auto;
 }
 
+/* Location Cards with Photo Buttons */
+.location-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-5);
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+}
+
+.location-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+}
+
+.location-info {
+  margin-bottom: var(--spacing-4);
+}
+
+.location-info h4 {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-1) 0;
+}
+
+.location-country {
+  font-size: var(--text-sm);
+  color: var(--primary);
+  font-weight: var(--font-medium);
+  display: block;
+  margin-bottom: var(--spacing-3);
+}
+
+.location-stats {
+  display: flex;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-1);
+}
+
+.photo-count,
+.visit-count {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  background: var(--background);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.location-actions {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
 .location-button {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
-  color: white;
+  flex: 1;
   border: none;
-  padding: var(--spacing-3) var(--spacing-4);
+  padding: var(--spacing-2) var(--spacing-3);
   border-radius: var(--radius-lg);
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
@@ -320,10 +375,31 @@
   box-shadow: var(--shadow-sm);
 }
 
-.location-button:hover {
-  transform: translateY(-2px);
+.location-button.primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+  color: white;
+}
+
+.location-button.primary:hover {
+  transform: translateY(-1px);
   box-shadow: var(--shadow-md);
   background: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary) 100%);
+}
+
+.location-button.secondary {
+  background: var(--background);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  flex: 0 0 auto;
+  min-width: 80px;
+}
+
+.location-button.secondary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
 }
 
 .location-button:active {
