@@ -142,6 +142,7 @@ const Travel = () => {
         </div>
 
         {/* Recent Adventures */}
+        {/*}
         <div className="recent-adventures animate-on-scroll">
           <h2 className="section-title animate-fade-in-up">Recent Adventures</h2>
           <div className="adventures-grid">
@@ -188,7 +189,7 @@ const Travel = () => {
                 );
               })}
           </div>
-        </div>
+        </div>*/}
       </div>
 
       {/* Location Detail Modal */}

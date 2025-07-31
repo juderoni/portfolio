@@ -5,24 +5,11 @@ export const useScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // Temporarily enable smooth scrolling for route changes
-    document.documentElement.classList.add('smooth-scroll');
-    
-    // Scroll to top when route changes
+    // Use instant scroll for route changes to avoid conflicts with user scrolling
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'smooth',
+      behavior: 'instant', // Changed from 'smooth' to 'instant'
     });
-
-    // Remove smooth scroll class after a delay to prevent conflicts
-    const timer = setTimeout(() => {
-      document.documentElement.classList.remove('smooth-scroll');
-    }, 1000);
-
-    return () => {
-      clearTimeout(timer);
-      document.documentElement.classList.remove('smooth-scroll');
-    };
   }, [pathname]);
 };

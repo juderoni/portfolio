@@ -4,22 +4,23 @@
   min-height: calc(100vh - 4rem);
   background-color: var(--background);
   width: 100%;
+  /* Ensure page has enough height for scrolling even before animations */
+  padding-bottom: 1vh;
 }
 
 /* Animation on scroll styles */
 .animate-on-scroll {
-  /* Remove initial opacity: 0 to prevent flash */
-  transition: all 0.8s ease-out;
+  transition: opacity 0.8s ease-out;
+  will-change: opacity;
 }
 
 .animate-on-scroll:not(.animate-in) {
   opacity: 0;
-  transform: translateY(30px);
 }
 
 .animate-on-scroll.animate-in {
   opacity: 1;
-  transform: translateY(0);
+  will-change: auto;
 }
 
 /* Individual element animations - only apply when parent is ready */
@@ -41,11 +42,9 @@
 
 /* Hero Section */
 .hero-section {
-  background: linear-gradient(
-    135deg,
-    var(--surface) 0%,
-    var(--background) 100%
-  );
+  background: linear-gradient(135deg,
+      var(--surface) 0%,
+      var(--background) 100%);
   padding: var(--spacing-2xl) var(--spacing-sm);
   text-align: center;
   border-bottom: 1px solid var(--border);
