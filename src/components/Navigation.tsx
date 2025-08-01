@@ -1,11 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import ThemeSwitcher from './ThemeSwitcher';
 import './Navigation.css';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const mobileNavRef = useRef<HTMLDivElement>(null);
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
 
   const navItems = [
     { path: '/', label: 'About' },
@@ -41,6 +44,29 @@ const Navigation = () => {
     setIsMenuOpen(false);
   }, [location.pathname]);
 
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isMenuOpen &&
+        mobileNavRef.current &&
+        hamburgerRef.current &&
+        !mobileNavRef.current.contains(event.target as Node) &&
+        !hamburgerRef.current.contains(event.target as Node)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
   return (
     <nav className={`navigation ${isScrolled ? 'scrolled' : ''}`}>
       <div className="nav-container">
@@ -61,10 +87,12 @@ const Navigation = () => {
               {item.label}
             </Link>
           ))}
+          <ThemeSwitcher />
         </div>
 
         {/* Mobile Hamburger Button */}
         <button
+          ref={hamburgerRef}
           className={`hamburger ${isMenuOpen ? 'active' : ''}`}
           onClick={toggleMenu}
           aria-label="Toggle navigation menu"
@@ -75,7 +103,7 @@ const Navigation = () => {
         </button>
 
         {/* Mobile Navigation Menu */}
-        <div className={`mobile-nav ${isMenuOpen ? 'open' : ''}`}>
+        <div ref={mobileNavRef} className={`mobile-nav ${isMenuOpen ? 'open' : ''}`}>
           <div className="mobile-nav-links">
             {navItems.map((item) => (
               <Link
@@ -87,6 +115,9 @@ const Navigation = () => {
                 {item.label}
               </Link>
             ))}
+            <div className="mobile-theme-switcher">
+              <ThemeSwitcher />
+            </div>
           </div>
         </div>
       </div>

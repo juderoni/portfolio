@@ -6,3 +6,4 @@ export { default as Globe } from './Globe';
 export { default as LocationModal } from './LocationModal';
 export { default as ErrorBoundary } from './ErrorBoundary';
 export { default as Footer } from './Footer';
+export { default as ThemeSwitcher } from './ThemeSwitcher';

@@ -1,7 +1,9 @@
 import { useState, useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Navigation, LoadingSpinner, ScrollToTop, ErrorBoundary, Footer } from './components';
+import { ThemeProvider } from './contexts/ThemeContext';
 import { useScrollToTop } from './hooks/useScrollToTop';
+import './styles/themes.css';
 import './App.css';
 
 // Lazy load page components for code splitting
@@ -73,9 +75,11 @@ function AppContent() {
 
 function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </ThemeProvider>
   );
 }
 
