@@ -446,10 +446,11 @@ Photo overlay for clickable images */
 .gallery-info-sidebar {
   position: absolute;
   left: var(--spacing-6);
-  top: 25%;
+  top: 10%;
+  gap: var(--spacing-3);
   transform: translateY(-50%);
   z-index: 20;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(21, 21, 21, 0.7);
   backdrop-filter: blur(8px);
   padding: var(--spacing-4);
   border-radius: var(--radius-lg);
@@ -554,11 +555,10 @@ Photo overlay for clickable images */
   justify-content: center;
   /* Limit height to prevent overlap with thumbnails */
   max-height: calc(100vh - 200px);
-  /* min-height:  calc(100vh - 200px); */
-  /* Add more padding to ensure photo doesn't overlap with sidebar and nav buttons */
-  padding: 0 calc(var(--spacing-8) + 0px) 0 calc(var(--spacing-8) + 220px);
-  margin: 1em 6em 0px 0px;
-
+  /* Use margin instead of padding to ensure photo doesn't overlap with sidebar and nav buttons */
+  margin: 0 calc(var(--spacing-16) + 60px) 0 calc(var(--spacing-16) + 220px);
+  /* Ensure image container is behind buttons */
+  z-index: 1;
 }
 
 .gallery-image {
