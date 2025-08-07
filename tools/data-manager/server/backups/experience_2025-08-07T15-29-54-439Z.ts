@@ -7,7 +7,8 @@ export const experience: Experience[] = [
     location: 'Wanchese, NC',
     startDate: '2025-05',
     endDate: 'Present',
-    description: 'Support analytical research of the Gulf Stream using CODAR high‑frequency radar; build automation for ocean current processing workflows',
+    description:
+      'Support analytical research of the Gulf Stream using CODAR high‑frequency radar; build automation for ocean current processing workflows',
     achievements: [
       'Automated SeaSonde/CODAR current‑processing pipelines in Python to streamline ingestion, QC, and product generation',
       'Developed scripts and utilities for computing radial metrics and producing analysis-ready datasets and visuals',
@@ -20,7 +21,8 @@ export const experience: Experience[] = [
     location: 'Chapel Hill, NC (Hybrid)',
     startDate: '2023-05',
     endDate: '2025-04',
-    description: 'Built tooling and infrastructure to improve software delivery and cloud deployments',
+    description:
+      'Built tooling and infrastructure to improve software delivery and cloud deployments',
     achievements: [
       'Created a Python package to build Docker images and push them to Google Artifact Registry for a streamlined deployment pipeline',
       'Assisted migration of services to Google Cloud (Artifact Registry, Secret Manager, Compute Engine)',
@@ -33,7 +35,8 @@ export const experience: Experience[] = [
     location: 'Wanchese, NC',
     startDate: '2022-05',
     endDate: '2022-08',
-    description: 'Supported programming and data management for the NCROEP marine resource observations program',
+    description:
+      'Supported programming and data management for the NCROEP marine resource observations program',
     achievements: [
       'Authored MATLAB and Python scripts for data ingestion, cleaning, and QC',
       'Maintained datasets and produced plots/reports to aid daily field and analysis workflows',
@@ -46,7 +49,8 @@ export const experience: Experience[] = [
     location: 'Kill Devil Hills, NC',
     startDate: '2020-05',
     endDate: '2021-08',
-    description: 'Ensured public safety on a high‑traffic oceanfront during peak summer seasons',
+    description:
+      'Ensured public safety on a high‑traffic oceanfront during peak summer seasons',
     achievements: [
       'Monitored ocean conditions and responded to emergencies with rescue and first‑aid',
       'Demonstrated leadership coordinating with team members during high‑volume days',
@@ -59,7 +63,8 @@ export const experience: Experience[] = [
     location: 'Nags Head, NC',
     startDate: '2018-05',
     endDate: '2021-08',
-    description: 'Served customers in a fast‑paced environment while handling point‑of‑sale and daily operations',
+    description:
+      'Served customers in a fast‑paced environment while handling point‑of‑sale and daily operations',
     achievements: [
       'Provided friendly, efficient service during peak tourist seasons',
       'Handled cash/POS transactions and maintained cleanliness and food‑safety standards',

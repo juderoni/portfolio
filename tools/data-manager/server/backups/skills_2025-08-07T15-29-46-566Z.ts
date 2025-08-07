@@ -76,7 +76,6 @@ export const skills: SkillCategory[] = [
       'CI/CD',
       'Code Review',
       'Version Control',
-      'Kanban Issue Management',
     ],
   },
 ];

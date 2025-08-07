@@ -27,13 +27,7 @@ export const skills: SkillCategory[] = [
   },
   {
     category: 'Mobile Development',
-    skills: [
-      'iOS Development',
-      'Swift',
-      'UIKit',
-      'SwiftUI',
-      'Xcode',
-    ],
+    skills: ['iOS Development', 'Swift', 'UIKit', 'SwiftUI', 'Xcode'],
   },
   {
     category: 'Data Science & Analytics',
@@ -48,25 +42,11 @@ export const skills: SkillCategory[] = [
   },
   {
     category: 'Databases',
-    skills: [
-      'PostgreSQL',
-      'MySQL',
-      'MongoDB',
-      'Redis',
-      'SQLite',
-    ],
+    skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'SQLite'],
   },
   {
     category: 'Tools & Technologies',
-    skills: [
-      'Git',
-      'Docker',
-      'AWS',
-      'Google Cloud',
-      'Linux',
-      'Nginx',
-      'Vite',
-    ],
+    skills: ['Git', 'Docker', 'AWS', 'Google Cloud', 'Linux', 'Nginx', 'Vite'],
   },
   {
     category: 'Development Practices',
@@ -76,7 +56,6 @@ export const skills: SkillCategory[] = [
       'CI/CD',
       'Code Review',
       'Version Control',
-      'Kanban Issue Management',
     ],
   },
 ];
