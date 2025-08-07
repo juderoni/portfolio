@@ -4,7 +4,8 @@ export const projects: Project[] = [
   {
     id: 'betcha-ios',
     title: 'Betcha iOS App',
-    description: 'A social betting application for iOS that allows users to create and participate in friendly wagers with friends. Features real-time notifications, secure payment processing, and social interaction capabilities.',
+    description:
+      'A social betting application for iOS that allows users to create and participate in friendly wagers with friends. Features real-time notifications, secure payment processing, and social interaction capabilities.',
     technologies: [
       'Swift',
       'UIKit',
@@ -21,7 +22,8 @@ export const projects: Project[] = [
   {
     id: 'zybooks-clone',
     title: 'Zybooks Clone',
-    description: 'A comprehensive educational platform clone that replicates the core functionality of Zybooks. Includes interactive coding exercises, progress tracking, and administrative features for instructors.',
+    description:
+      'A comprehensive educational platform clone that replicates the core functionality of Zybooks. Includes interactive coding exercises, progress tracking, and administrative features for instructors.',
     technologies: [
       'React',
       'Node.js',
@@ -31,6 +33,7 @@ export const projects: Project[] = [
       'CSS3',
     ],
     period: '2023',
+    
   },
   {
     id: 'sunshine-web',
@@ -45,5 +48,6 @@ export const projects: Project[] = [
       'Vite',
     ],
     period: '2022-2023',
+    
   },
 ];

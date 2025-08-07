@@ -40,3 +40,6 @@ coverage
 
 # Kiro configuration
 .kiro
+
+# Development tools (excluded from production build)
+tools

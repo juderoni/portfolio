@@ -13,7 +13,9 @@
     "preview": "vite preview",
     "test": "vitest",
     "test:run": "vitest run",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "data-manager": "cd tools/data-manager && npm install && npm run dev",
+    "data-manager:install": "cd tools/data-manager && npm install"
   },
   "dependencies": {
     "@types/three": "^0.178.1",
