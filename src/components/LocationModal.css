@@ -657,16 +657,24 @@ Photo overlay for clickable images */
     padding: var(--spacing-2) 0;
   }
 
-  .gallery-info h3 {
-    font-size: var(--text-lg);
+  .gallery-info-sidebar {
+    display: none; /* Hide sidebar on mobile to give more space for image */
   }
 
   .gallery-image-container {
-    padding: 0 var(--spacing-12);
+    /* Reset margins for mobile - no sidebar to account for */
+    margin: 0 var(--spacing-12) 0 var(--spacing-12);
+    max-height: calc(100vh - 180px); /* Adjust for mobile header/thumbnails */
+  }
+
+  .gallery-image {
+    max-height: calc(100vh - 180px);
   }
 
   .gallery-nav-button {
     padding: var(--spacing-3);
+    min-width: 44px;
+    min-height: 44px;
   }
 
   .gallery-prev {
@@ -690,11 +698,19 @@ Photo overlay for clickable images */
 
 @media (max-width: 640px) {
   .gallery-image-container {
-    padding: 0 var(--spacing-8);
+    /* Even smaller margins for small mobile screens */
+    margin: 0 var(--spacing-8) 0 var(--spacing-8);
+    max-height: calc(100vh - 160px);
+  }
+
+  .gallery-image {
+    max-height: calc(100vh - 160px);
   }
 
   .gallery-nav-button {
     padding: var(--spacing-2);
+    min-width: 40px;
+    min-height: 40px;
   }
 
   .thumbnail-image {
@@ -710,5 +726,28 @@ Photo overlay for clickable images */
 
   .gallery-close-button {
     align-self: flex-end;
+  }
+}
+
+/* Portrait mobile specific fixes */
+@media (max-width: 640px) and (orientation: portrait) {
+  .gallery-image-container {
+    /* Optimize for portrait mobile screens */
+    margin: 0 var(--spacing-6) 0 var(--spacing-6);
+    max-height: calc(100vh - 140px);
+  }
+
+  .gallery-image {
+    max-height: calc(100vh - 140px);
+    width: auto;
+    height: auto;
+  }
+
+  .gallery-content {
+    margin-bottom: 80px; /* Reduce bottom margin for thumbnails */
+  }
+
+  .gallery-thumbnails {
+    padding: var(--spacing-1) 0;
   }
 }
